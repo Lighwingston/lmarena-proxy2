@@ -1028,7 +1028,8 @@ async def websocket_endpoint(websocket: WebSocket):
     browser_ws = websocket
     websocket_status.set(1)
 
-    # 启动心跳任务
+    # 创建心跳实例并启动心跳任务
+    heartbeat = WebSocketHeartbeat()
     heartbeat_task = asyncio.create_task(heartbeat.start_heartbeat(websocket))
     background_tasks.add(heartbeat_task)
 
